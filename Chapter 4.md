@@ -14,7 +14,7 @@ Custom schedulers in `sched_ext` are written using **eBPF programs**. Unlike tra
   - Provide hooks for load balancing and CPU assignment.
 
 ### Example: A Simple Priority-Based Scheduler
-    ```c
+  ```c
     SEC("sched_ext")
     int pick_task(struct task_struct *task) {
         // Custom logic: always select the highest-priority task
@@ -28,7 +28,7 @@ Custom schedulers in `sched_ext` are written using **eBPF programs**. Unlike tra
         }
         return best->pid;
     }
-    ```
+  ```
 **Explanation**:
 - Iterates through the available tasks.
 - Chooses the one with the **highest priority value**.
@@ -39,39 +39,39 @@ Custom schedulers in `sched_ext` are written using **eBPF programs**. Unlike tra
 After writing the BPF program, you need to **compile and attach** it to the kernel.
 
 ### Step 1: Compile the Scheduler
-    ```bash
+  ```bash
     clang -O2 -target bpf -c my_sched.c -o my_sched.o
-    ```
+  ```
 ### Step 2: Load and Attach with bpftool
-    ```bash
+  ```bash
     bpftool prog load my_sched.o /sys/fs/bpf/my_sched
     bpftool sched attach my_sched
-    ```
+  ```
 **Alternative (C API via libbpf):**
 
-    ```c
+  ```c
     struct bpf_object *obj;
     obj = bpf_object__open("my_sched.o");
     bpf_object__load(obj);
     bpf_sched_attach(obj, "my_sched");
-    ```
+  ```
 ## 4.3 Debugging Tools and Logs
 
 Debugging custom schedulers is critical since incorrect logic can affect performance or stability.
 
 ### Logging with bpf_printk
-    ```c
+  ```c
     SEC("sched_ext")
     int pick_task(struct task_struct *task) {
         bpf_printk("Evaluating task %d with priority %d\n", task->pid, task->prio);
         return task->pid;
     }
-    ```
+  ```
 Check logs in real time:
 
-    ```bash
+  ```bash
     sudo cat /sys/kernel/debug/tracing/trace_pipe
-    ```
+  ```
 ### Monitoring with perf / ftrace
 
 - **perf sched** – Track scheduling latency and context switches.
