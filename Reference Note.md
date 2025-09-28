@@ -172,3 +172,46 @@ flowchart TB
   T6 --> T2  
 
 ```
+---
+## Diagram of the interaction between the sched_ext Framework (Kernel Layer) and the BPF Scheduler (Policy Layer)
+
+```mermaid
+flowchart TB
+  subgraph Framework["sched_ext Framework (Kernel Layer)"]
+    F1["Core Scheduler Hooks (enqueue_task_scx, pick_next_task_scx)"]
+    F2["Dispatch Queues (Global, Local, Custom DSQs)"]
+    F3["Helper Functions (scx_bpf_dispatch, scx_bpf_consume, scx_bpf_select_cpu)"]
+  end
+
+  subgraph BPF["BPF Scheduler (Policy Layer)"]
+    B1["struct sched_ext_ops callbacks"]
+    B2["Custom task placement & CPU selection"]
+    B3["Custom policies (latency, fairness, batching)"]
+  end
+
+  subgraph Userspace["Userspace Control"]
+    U1["BPF Maps & Metrics"]
+    U2["Policy configuration & monitoring"]
+  end
+
+  %% Interaction
+  F1 -->|Interface 1| B1
+  B1 -->|Uses Helpers| F3
+  B2 -->|Enqueue tasks into DSQs| F2
+  B3 -->|Reads/Writes Config| U1
+  U2 -->|Updates Policy/Maps| B1
+
+
+```
+
+### How to read this:
+
+- Framework sits on top of the core scheduler, exposing hooks and helpers.
+
+- BPF Scheduler implements custom scheduling logic using struct sched_ext_ops.
+
+- Tasks flow from core scheduler → framework → BPF scheduler for decisions.
+
+- DSQs (Dispatch Queues) are managed by the framework but populated according to the BPF policy.
+
+- Userspace can read/write BPF maps for metrics or update scheduler policies at runtime.
