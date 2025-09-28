@@ -4,7 +4,7 @@
 
 
 
-##5.1 Key Features
+## 5.1 Key Features
 
 - **Full Scheduling Interface:** `sched_ext` exports a complete scheduling interface so that any scheduling algorithm can be implemented.
 - **CPU Grouping:** The BPF scheduler can group CPUs arbitrarily and schedule them together; tasks are not tied to specific CPUs at wakeup.
@@ -13,7 +13,7 @@
 - **Debugging:** If the BPF scheduler triggers an error, debug information is dumped to aid debugging. It can be accessed through `sched_ext_dump` tracepoint or via `SysRq-D`.
 
 
-##5.2  To enable `sched_ext`
+## 5.2  To enable `sched_ext`
 
 To enable `sched_ext`, the kernel must be compiled with the following options:
 
