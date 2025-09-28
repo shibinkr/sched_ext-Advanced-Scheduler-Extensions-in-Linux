@@ -7,16 +7,16 @@
 ## Layered Architecture
 
 **Core Kernel Scheduler**  
-The base scheduling logic (in `kernel/sched/core.c`) defines core abstractions and operations that all scheduler classes must implement.
+- The base scheduling logic (in `kernel/sched/core.c`) defines core abstractions and operations that all scheduler classes must implement.
 
 **sched_ext Framework (Kernel Layer)**  
-Sits on top of the core scheduler and implements a new scheduler class (`ext`) which satisfies the core scheduler’s interface (`struct sched_class`). The framework handles bridging to BPF and managing queues (local, global, custom).
+- Sits on top of the core scheduler and implements a new scheduler class (`ext`) which satisfies the core scheduler’s interface (`struct sched_class`). The framework handles bridging to BPF and managing queues (local, global, custom).
 
 **BPF Scheduler (Policy Layer)**  
-The BPF program implements `struct sched_ext_ops` callbacks (enqueue, dispatch, running, stopping, quiescent, etc.), defining custom behavior for scheduling decisions.
+- The BPF program implements `struct sched_ext_ops` callbacks (enqueue, dispatch, running, stopping, quiescent, etc.), defining custom behavior for scheduling decisions.
 
 **Userspace Component**  
-A userspace program (C, Rust, etc.) interacts with the BPF scheduler via BPF maps, configuration, metrics, and control, enabling runtime updates and monitoring.
+- A userspace program (C, Rust, etc.) interacts with the BPF scheduler via BPF maps, configuration, metrics, and control, enabling runtime updates and monitoring.
 
 ---
 
