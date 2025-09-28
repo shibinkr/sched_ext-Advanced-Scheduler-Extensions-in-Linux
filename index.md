@@ -22,27 +22,35 @@
 - 4.3 Debugging Tools and Logs  
 - 4.4 Safety and Recovery Mechanisms  
 
-## 5. Use Cases and Examples
-- 5.1 Low-Latency Workloads  
-- 5.2 Multi-Tenant / Cloud Scheduling  
-- 5.3 AI/ML Task Scheduling  
-- 5.4 Research Prototypes  
+## 5. Extensible Scheduler Class
+- 5.1 Key Features  
+- 5.2 To enable  
+- 5.3 Behavior  
+- 5.4 Checking Scheduler Status  
+- 5.5 Implementing a BPF Scheduler  
+- 5.6 Dispatch Queues (DSQs)  
+- 5.7 Task Lifecycle & Pseudo-Code
+- 5.8 Reference Files  
+- 5.9 Important Notes  
 
-## 6. Performance Evaluation
-- 6.1 Metrics for Scheduler Efficiency  
-- 6.2 Benchmarking sched_ext vs CFS  
-- 6.3 Case Studies  
+## 6. Use Cases and Examples
+- 6.1 Low-Latency Workloads  
+- 6.2 Multi-Tenant / Cloud Scheduling  
+- 6.3 AI/ML Task Scheduling  
+- 6.4 Research Prototypes  
 
-## 7. Best Practices
-- 7.1 Choosing a Scheduler Policy  
-- 7.2 Avoiding Resource Contention  
-- 7.3 Monitoring and Maintenance  
+## 7. Performance Evaluation
+- 7.1 Metrics for Scheduler Efficiency  
+- 7.2 Benchmarking `sched_ext` vs CFS  
+- 7.3 Case Studies  
 
-## 8. Future Enhancements
-- 8.1 Integration with Kernel Scheduler Improvements  
-- 8.2 Potential for Hybrid Schedulers  
+## 8. Best Practices
+- 8.1 Choosing a Scheduler Policy  
+- 8.2 Avoiding Resource Contention  
+- 8.3 Monitoring and Maintenance  
 
-## 9. References and Further Reading
-- 9.1 Kernel Documentation  
-- 9.2 Research Papers  
-- 9.3 Online Resources and Tutorials
+## 9. Future Enhancements
+- 9.1 Integration with Kernel Scheduler Improvements  
+- 9.2 Potential for Hybrid Schedulers  
+
+
