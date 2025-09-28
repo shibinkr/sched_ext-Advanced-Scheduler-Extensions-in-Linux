@@ -130,6 +130,7 @@ flowchart TD
 - If anything goes wrong, the system **automatically falls back** to CFS.  
 
 ## Step-by-step flow of implementing a custom scheduler with sched_ext:
+
 ```mermaid
 flowchart TD
     A[Write Scheduler in BPF] --> B[Compile with clang -target bpf]
